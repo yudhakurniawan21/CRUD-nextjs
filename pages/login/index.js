@@ -38,7 +38,7 @@ export default function Login() {
         try {
             const { data } = await Axios.post(url, form);
             console.log(data);
-            localStorage.setItem("token", JSON.stringify(data.token))
+            localStorage.setItem("token", data.token)
             setSuccess(true);
             setError(false);
             router.push("/");

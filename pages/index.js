@@ -5,13 +5,6 @@ import { Modal, Button, Form, Row, InputGroup, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-const AUTH_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiZWFyZXIiLCJzdWIiOjU5MSwiaWF0IjoxNjQ5NDM0NDM2LCJleHAiOjE2NDk0MzgwMzZ9.mGDUvMZKQCLvUhIxWY5YCZ_DBpRxuARGeAAVQMzN3ao";
-
-Axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
-Axios.defaults.headers.post["Content-Type"] =
-  "application/x-www-form-urlencoded";
-
 export const getStaticProps = async () => {
   const { data } = await Axios.get("https://hoodwink.medkomtek.net/api/items");
 
@@ -101,6 +94,12 @@ export default function Home(props) {
     if (typeof window !== "undefined") {
       const isToken = localStorage.getItem("token");
       setToken(isToken);
+      const AUTH_TOKEN = isToken;
+        // "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiZWFyZXIiLCJzdWIiOjU5MSwiaWF0IjoxNjQ5NDM0NDM2LCJleHAiOjE2NDk0MzgwMzZ9.mGDUvMZKQCLvUhIxWY5YCZ_DBpRxuARGeAAVQMzN3ao";
+
+      Axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+      Axios.defaults.headers.post["Content-Type"] =
+        "application/x-www-form-urlencoded";
     }
 
     getData();
